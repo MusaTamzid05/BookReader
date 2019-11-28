@@ -5,7 +5,10 @@ def main():
     #speak("This is a message.")
 
     pdf_parser = PDFParser(path = "/home/musa/Downloads/design-web-apis-arnaud-lauret.pdf")
-    print(pdf_parser.get_text_from(62))
+    sentences = pdf_parser.get_sentence_from(62)
+
+    for sentence in sentences:
+        print(sentence)
 
     pdf_parser.close()
 

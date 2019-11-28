@@ -1,4 +1,7 @@
 from PyPDF2 import PdfFileReader
+from nltk import sent_tokenize
+
+
 
 class PDFParser:
 
@@ -32,3 +35,10 @@ class PDFParser:
 
     def close(self):
         self.f_ptr.close()
+
+    def get_sentences_from(self , text):
+        return sent_tokenize(text)
+
+    def get_sentence_from(self , page_num):
+        text = self.get_text_from(page_num)
+        return self.get_sentences_from(text)
