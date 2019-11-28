@@ -42,3 +42,38 @@ class PDFParser:
     def get_sentence_from(self , page_num):
         text = self.get_text_from(page_num)
         return self.get_sentences_from(text)
+
+    def clear(self , sentence):
+
+        ignore_charecters = ["™" , "˜" , "?" , "!" , "(" , ")" , "˚" , "." , "-"]
+        new_sentence = ""
+
+        for ch in sentence:
+            if ch in ignore_charecters:
+                continue
+
+            elif ch == "%":
+                ch = " percent "
+            new_sentence += ch
+
+        return new_sentence
+
+
+    def get_clear_sentences(self , sentences):
+
+        cleared_sentences = []
+
+        for sentence in sentences:
+            temp_sentence = self.clear(sentence)
+
+            if "," in temp_sentence:
+                temp_sentences = temp_sentence.split(",")
+            else:
+                temp_sentences = [temp_sentence]
+
+            for t_sentence in temp_sentences:
+                cleared_sentences.append(t_sentence.strip())
+
+        return cleared_sentences
+
+

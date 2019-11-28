@@ -6,6 +6,8 @@ def main():
 
     pdf_parser = PDFParser(path = "/home/musa/Downloads/design-web-apis-arnaud-lauret.pdf")
     sentences = pdf_parser.get_sentence_from(62)
+    sentences = pdf_parser.get_clear_sentences(sentences)
+
 
     for sentence in sentences:
         print(sentence)
