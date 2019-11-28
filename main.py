@@ -1,18 +1,9 @@
-from book_reader.speaker import speak
-from book_reader.parser import PDFParser
+from book_reader import Reader
 
 def main():
-    #speak("This is a message.")
 
-    pdf_parser = PDFParser(path = "/home/musa/Downloads/design-web-apis-arnaud-lauret.pdf")
-    sentences = pdf_parser.get_sentence_from(62)
-    sentences = pdf_parser.get_clear_sentences(sentences)
-
-
-    for sentence in sentences:
-        print(sentence)
-
-    pdf_parser.close()
+    reader = Reader(path = "/home/musa/Downloads/design-web-apis-arnaud-lauret.pdf")
+    reader.read_from(62)
 
 if __name__ == "__main__":
     main()

@@ -7,6 +7,7 @@ class PDFParser:
 
     def __init__(self , path):
 
+
         self.reader_obj = None
         self.num_page = -1
         self.f_ptr = open(path , "rb")
@@ -16,11 +17,9 @@ class PDFParser:
 
 
 
-    def get_text_from(self , page_num):
 
-        if page_num < 0 and page_num > self.total_pages:
-            print("Invalid page num : {}".format(page_num))
-            return
+
+    def get_text_from(self , page_num):
 
         page = self.reader_obj.getPage(page_num)
         return page.extractText()
@@ -36,12 +35,18 @@ class PDFParser:
     def close(self):
         self.f_ptr.close()
 
-    def get_sentences_from(self , text):
+    def get_tokenize_sentences(self , text):
         return sent_tokenize(text)
 
-    def get_sentence_from(self , page_num):
+    def get_sentences_from(self , page_num):
+
+        if page_num < 0 and page_num > self.total_pages:
+            print("Invalid page num : {}".format(page_num))
+            return None
+
+
         text = self.get_text_from(page_num)
-        return self.get_sentences_from(text)
+        return self.get_tokenize_sentences(text)
 
     def clear(self , sentence):
 
